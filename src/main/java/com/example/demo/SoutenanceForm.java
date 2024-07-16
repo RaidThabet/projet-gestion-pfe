@@ -8,14 +8,20 @@ public class SoutenanceForm {
     private String salleSoutenance;
     private String idJurySoutenance;
     private String nomsEtudiants;
+    private String note;
+    private String validation;
 
-    public SoutenanceForm(String idSoutenance, String dateSoutenance, String heureSoutenance, String salleSoutenance, String idJurySoutenance, String nomsEtudiants) {
+    public SoutenanceForm(String idSoutenance, String dateSoutenance, String heureSoutenance,
+                          String salleSoutenance, String idJurySoutenance, String nomsEtudiants,
+                          String note, String validation) {
         this.idSoutenance = idSoutenance;
         this.dateSoutenance = dateSoutenance;
         this.heureSoutenance = heureSoutenance;
         this.salleSoutenance = salleSoutenance;
         this.idJurySoutenance = idJurySoutenance;
         this.nomsEtudiants = nomsEtudiants;
+        this.note = note;
+        this.validation = validation;
     }
 
     public String getIdSoutenance() {
@@ -64,5 +70,21 @@ public class SoutenanceForm {
 
     public void setNomsEtudiants(String nomsEtudiants) {
         this.nomsEtudiants = nomsEtudiants;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getValidation() {
+        return validation;
+    }
+
+    public void setValidation(String validation) {
+        this.validation = validation;
     }
 }

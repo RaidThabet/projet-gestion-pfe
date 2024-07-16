@@ -22,24 +22,24 @@
                     <Image url="@isimmLogo.png"/>
                 </image>
             </ImageView>
-            <Label text="Gestion des Etudiants" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 10 10 0 7; -fx-font-size: 17"/>
+            <Label text="Gestion des Etudiants" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 10 10 0 7; -fx-font-size: 17;"/>
             <VBox spacing="2" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
                 <Label styleClass="addLabel" text="Ajouter" VBox.vgrow="NEVER" textFill="black"  prefWidth="230" alignment="TOP_LEFT" onMouseClicked="#loadAjouterEtudiant"/>
                 <Label styleClass="modifyLabel" text="Modifier" VBox.vgrow="NEVER" textFill="black"  prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadModifierEtudiant"/>
                 <Label styleClass="searchLabel" text="Rechercher" VBox.vgrow="NEVER" textFill="black"  prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadRechercheEtudiant"/>
             </VBox>
 
-            <Label text="Gestion des Jurys" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 20 10 0 7;-fx-font-size: 17"/>
+            <Label text="Gestion des Jurys" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 20 10 0 7;-fx-font-size: 17;"/>
             <VBox spacing="2" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
                 <Label styleClass="addLabel" text="Ajouter" VBox.vgrow="NEVER" textFill="black" prefWidth="230" alignment="TOP_LEFT" onMouseClicked="#loadAjouterJury"/>
                 <!--Label styleClass="modifyLabel" text="Modifier" VBox.vgrow="NEVER" textFill="343a40" maxWidth="Infinity"  alignment="TOP_LEFT"/>-->
                 <Label styleClass="searchLabel" text="Rechercher" VBox.vgrow="NEVER" textFill="black" prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadRechercheJury"/>
             </VBox>
 
-            <Label text="Gestion des Soutenances" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 20 0 0 7;-fx-font-size: 17"/>
+            <Label text="Gestion des Soutenances" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 20 0 0 7;-fx-font-size: 17;"/>
             <VBox spacing="2" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
                 <Label styleClass="planifyLabel" text="Planifier" VBox.vgrow="NEVER" textFill="black" prefWidth="230" alignment="TOP_LEFT" onMouseClicked="#loadAjouterSoutenance"/>
-                <!--Label styleClass="modifyLabel" text="Modifier" VBox.vgrow="NEVER" textFill="343a40" maxWidth="Infinity"  alignment="TOP_LEFT"/>-->
+                <Label styleClass="modifyLabel" text="Valider" VBox.vgrow="NEVER" textFill="black"  prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadValiderSoutenance"/>
                 <Label styleClass="searchLabel" text="Rechercher" VBox.vgrow="NEVER" textFill="black" prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadRechercherSoutenance"/>
             </VBox>
 
@@ -134,6 +134,7 @@
                 </TableView>
             </AnchorPane>
             <fx:include fx:id="ajouterSoutenancePage" source="ajouterSoutenance.fxml"/>
+            <fx:include fx:id="validerSoutenancePage" source="validerSoutenance.fxml"/>
             <!--fx:include fx:id="rechercherSoutenancePage" source="rechercherSoutenance.fxml"/>-->
             <AnchorPane fx:id="rechercherSoutenancePage">
                 <TableView fx:id="soutenanceTable" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
@@ -169,9 +170,19 @@
                                 <PropertyValueFactory property="nomsEtudiants" />
                             </cellValueFactory>
                         </TableColumn>
-
+                        <TableColumn fx:id="noteSoutenanceColumn" text="Note">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="note" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="validationSoutenanceColumn" text="Validation">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="validation" />
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                 </TableView>
+
             </AnchorPane>
         </StackPane>
     </center>

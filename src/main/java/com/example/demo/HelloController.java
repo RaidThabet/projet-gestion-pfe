@@ -23,6 +23,7 @@ public class HelloController implements Initializable {
     public Button ajouterJuryButton;
     public Button ajouterSoutenanceButon;
     public Button modifierEtudiantButton;
+    public Button validerSoutenanceButon;
 
     @FXML
     private Label buttonAjouterEtudiant;
@@ -92,13 +93,25 @@ public class HelloController implements Initializable {
     @FXML
     private TextField nomsEtudiants;
     @FXML
+    private DatePicker dateValidationSoutenance;
+    @FXML
+    private TextField heureValidationSoutenance;
+    @FXML
+    private TextField salleValidationSoutenance;
+    @FXML
+    private TextField idJuryValidationSoutenance;
+    @FXML
+    private TextField noteValidationSoutenance;
+    @FXML
+    private TextField appreciationValidationSoutenance;
+    @FXML
     private TableView<SoutenanceForm> soutenanceTable;
 
 
 
     @FXML
     private Node ajouterEtudiantPage, modifierEtudiantPage,  ajouterJuryPage, rechercheJuryPage
-            ,ajouterSoutenancePage, rechercherSoutenancePage;
+            ,ajouterSoutenancePage, validerSoutenancePage, rechercherSoutenancePage;
 
     @FXML
     private Node rechercheEtudiantPage;
@@ -121,6 +134,7 @@ public class HelloController implements Initializable {
         setupAjouterButtonJuryBinding();
         setupAjouterButtonSoutenanceBinding();
         setupModifyButtonEtudiantBinding();
+        setupModifyButtonSoutenanceBinding();
 
     }
 
@@ -180,6 +194,23 @@ public class HelloController implements Initializable {
                 .or(Bindings.createBooleanBinding(() -> !matEtudiant.textProperty().get().matches("\\d{8}"), matEtudiant.textProperty()));
 
         modifierEtudiantButton.disableProperty().bind(matriculeNonValide);
+    }
+
+    @FXML
+    private void setupModifyButtonSoutenanceBinding() {
+        if (validerSoutenanceButon == null || salleValidationSoutenance == null || dateValidationSoutenance == null || heureValidationSoutenance == null || idJuryValidationSoutenance == null || noteValidationSoutenance == null || appreciationValidationSoutenance == null) {
+            return;
+        }
+
+        BooleanBinding areFieldsEmpty = (dateValidationSoutenance.valueProperty().isNull())
+                .or(Bindings.createBooleanBinding(() -> heureValidationSoutenance.textProperty().get().trim().isEmpty(), heureValidationSoutenance.textProperty()))
+                .or(Bindings.createBooleanBinding(() -> salleValidationSoutenance.textProperty().get().trim().isEmpty(), salleValidationSoutenance.textProperty()))
+                .or(Bindings.createBooleanBinding(() -> idJuryValidationSoutenance.textProperty().get().trim().isEmpty(), idJuryValidationSoutenance.textProperty()))
+                .or(Bindings.createBooleanBinding(() -> noteValidationSoutenance.textProperty().get().trim().isEmpty(), noteValidationSoutenance.textProperty()))
+                .or(Bindings.createBooleanBinding(() -> appreciationValidationSoutenance.textProperty().get().trim().isEmpty(), appreciationValidationSoutenance.textProperty()));
+
+        validerSoutenanceButon.disableProperty().bind(areFieldsEmpty);
+
     }
 
     @FXML
@@ -270,6 +301,12 @@ public class HelloController implements Initializable {
     }
 
     @FXML
+    private void loadValiderSoutenance() {
+        hideAllPages();
+        validerSoutenancePage.setVisible(true);
+    }
+
+    @FXML
     private void loadRechercherSoutenance() {
         hideAllPages();
         adjustColumnWidthsSoutenance();
@@ -284,20 +321,13 @@ public class HelloController implements Initializable {
         try {
             if (etudiantDAO.getEtudiantByMatricule(etudiant.getCin()) == null){
                 etudiantDAO.insertEtudiant(etudiant);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Etudiant ajouté avec succès");
-                alert.showAndWait();
+                showSuccessDialog("Etudiant ajouté avec succès");
             }
             else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Etudiant existe déjà");
-                alert.showAndWait();
+                showErrorDialog("Etudiant déjà existe");
             }
         } catch (SQLException e) {
+            showErrorDialog("Erreur");
             LOGGER.log(Level.SEVERE, "An SQL exception occurred", e);
         }
     }
@@ -309,25 +339,13 @@ public class HelloController implements Initializable {
         try {
             EtudiantForm oldEtudiant = etudiantDAO.getEtudiantByMatricule(matEtudiant.getText());
             if (oldEtudiant == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Etudiant n'existe pas");
-                alert.showAndWait();
+                showErrorDialog("Etudiant n'existe pas");
             } else {
                 etudiantDAO.updateEtudiant(matEtudiant.getText(), newEtudiant, oldEtudiant);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Etudiant modifié avec succès");
-                alert.showAndWait();
+                showSuccessDialog("Etudiant modifié avec succès");
             }
         } catch (SQLException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Etudiant n'existe pas");
-            alert.showAndWait();
+            showErrorDialog("Erreur");
             LOGGER.log(Level.SEVERE, "An SQL exception occurred", e);
         }
     }
@@ -338,26 +356,14 @@ public class HelloController implements Initializable {
         JuryDAO juryDAO = new JuryDAO();
         try {
             if (juryDAO.getJuryById(jury.getIdJury()) != null){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Jury existe déjà");
-                alert.showAndWait();
+                showErrorDialog("Jury existe déjà");
             }
             else{
                 juryDAO.insertJury(jury);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Jury ajouté avec succès");
-                alert.showAndWait();
+                showSuccessDialog("Jury ajouté avec succès");
             }
         } catch (SQLException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Jury existe déjà");
-            alert.showAndWait();
+            showErrorDialog("Erreur");
             LOGGER.log(Level.SEVERE, "An SQL exception occurred", e);
         }
     }
@@ -377,31 +383,47 @@ public class HelloController implements Initializable {
     @FXML
     public void handleSubmitButtonActionSoutenance() {
         String idSout = salleSoutenance.getText() + dateSoutenance.getValue().toString().replace("-", "") + heureSoutenance.getText().replace(":", "") + idJurySoutenance.getText();
-        SoutenanceForm soutenance = new SoutenanceForm(idSout, dateSoutenance.getValue().toString(), heureSoutenance.getText(), salleSoutenance.getText(), idJurySoutenance.getText(), nomsEtudiants.getText());
+        SoutenanceForm soutenance = new SoutenanceForm(idSout, dateSoutenance.getValue().toString(), heureSoutenance.getText(), salleSoutenance.getText(), idJurySoutenance.getText(), nomsEtudiants.getText(), "NA", "NA");
         SoutenanceDAO soutenanceDAO = new SoutenanceDAO();
+        JuryDAO juryDAO = new JuryDAO();
         try {
+            //test if isSoutenance already exists
             if (soutenanceDAO.getSoutenanceById(idSout) != null){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Soutenance existe déjà");
-                alert.showAndWait();
+                showErrorDialog("Soutenance existe déjà");
             }
+
+            //test if idJury doesn't exist
+
+            else if (juryDAO.getJuryById(idJurySoutenance.getText()) == null) {
+                showErrorDialog("Jury n'existe pas");
+            }
+
             else{
                 soutenanceDAO.insertSoutenance(soutenance);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Soutenance ajoutée avec succès");
-                alert.showAndWait();
+                showSuccessDialog("Soutenance ajoutée avec succès");
             }
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Soutenance existe déjà");
-            alert.showAndWait();
-            LOGGER.log(Level.SEVERE, "An SQL exception occurred", e);
+            showErrorDialog("Erreur dans la requête");
+        }
+    }
+
+    @FXML
+    public void handleModifyButtonSoutenance() {
+        String idSout = salleValidationSoutenance.getText() + dateValidationSoutenance.getValue().toString().replace("-", "") + heureValidationSoutenance.getText().replace(":", "") + idJuryValidationSoutenance.getText();
+        // SoutenanceForm soutenance = new SoutenanceForm(idSout, dateValidationSoutenance.getText(), heureValidationSoutenance.getText(), salleValidationSoutenance.getText(), idJuryValidationSoutenance.getText(), nomsEtudiants.getText(), noteValidationSoutenance.getText(), appreciationValidationSoutenance.getText());
+        SoutenanceDAO soutenanceDAO = new SoutenanceDAO();
+        JuryDAO juryDAO = new JuryDAO();
+        try {
+            if (soutenanceDAO.getSoutenanceById(idSout) == null){
+                showErrorDialog("Soutenance n'existe pas");
+            }
+            else{
+                soutenanceDAO.modifyNoteAppreciationSoutenance(idSout, noteValidationSoutenance.getText(), appreciationValidationSoutenance.getText());
+                showSuccessDialog("Soutenance modifiée avec succès");
+            }
+        } catch (SQLException e) {
+            showErrorDialog("Erreur dans la requête");
         }
     }
 
@@ -455,5 +477,26 @@ public class HelloController implements Initializable {
         return new EtudiantForm(nvNomEtudiant.getText(), nvCinEtudiant.getText(), nvDateNaissance, nvLieuNaissanceEtudiant.getText(), nvAdresseEtudiant.getText(), nvEmailEtudiant.getText(), nvDiplome, nvSpecialite);
     }
 
+    // private SoutenanceForm createNewSoutenance() {
+    //     return new SoutenanceForm(dateSoutenance.getValue().toString(), heureSoutenance.getText(),
+    //                             salleSoutenance.getText(), idJurySoutenance.getText(),
+    //                              nomsEtudiants.getText(), "NA", "NA");
+    // }
+
+    private void showErrorDialog(String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText(errorMessage);
+                alert.showAndWait();
+    }
+
+    private void showSuccessDialog(String content) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText(content);
+                alert.showAndWait();
+    }
 
 }

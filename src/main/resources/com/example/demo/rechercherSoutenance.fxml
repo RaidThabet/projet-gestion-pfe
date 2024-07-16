@@ -44,7 +44,16 @@
                     <PropertyValueFactory property="etudiantSoutenance" />
                 </cellValueFactory>
             </TableColumn>
-
+            <TableColumn fx:id="noteSoutenanceColumn" text="Note">
+                <cellValueFactory>
+                    <PropertyValueFactory property="note" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="validationSoutenanceColumn" text="Validation">
+                <cellValueFactory>
+                    <PropertyValueFactory property="validation" />
+                </cellValueFactory>
+            </TableColumn>
         </columns>
     </TableView>
 

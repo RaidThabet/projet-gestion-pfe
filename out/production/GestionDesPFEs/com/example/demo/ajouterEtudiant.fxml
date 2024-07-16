@@ -1,0 +1,75 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String ?>
+
+<?import javafx.scene.control.Button?>
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo.HelloController" vgap="15" hgap="15"
+          alignment="CENTER">
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label text="Nom" />
+        <TextField fx:id="nomEtudiant" promptText="Nom de l'étudiant"/>
+    </VBox>
+
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <Label text="Prénom" />
+        <TextField fx:id="prenomEtudiant" promptText="Prénom de l'étudiant"/>
+    </VBox>
+
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label text="Date de naissance" />
+        <DatePicker fx:id="dateNaissanceEtudiant" promptText="Date de naissance de l'étudiant"/>
+    </VBox>
+
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label text="Lieu de naissance" />
+        <TextField fx:id="lieuNaissanceEtudiant" promptText="Lieu de naissance de l'étudiant"/>
+    </VBox>
+
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Label text="Adresse" />
+        <TextField fx:id="adresseEtudiant" promptText="Adresse de l'étudiant"/>
+    </VBox>
+
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Label text="Email" />
+        <TextField fx:id="emailEtudiant" promptText="Email de l'étudiant"/>
+    </VBox>
+
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="3">
+        <Label text="Diplome" />
+        <ComboBox fx:id="diplomeEtudiant" promptText="Diplome de l'étudiant">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Licence"/>
+                    <String fx:value="Mastère"/>
+                    <String fx:value="Ingénieur"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </VBox>
+
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <Label text="Specialité" />
+        <ComboBox fx:id="specialiteEtudiant" promptText="Diplome de l'étudiant">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Génie Logiciel"/>
+                    <String fx:value="Microélectronique"/>
+                    <String fx:value="Systèmes Embarqués"/>
+                    <String fx:value="Mésure Instrumentation et Métrologie"/>
+                    <String fx:value="Microélectronique et Instrumentation"/>
+                    <String fx:value="Ingénierie en Instrumentation Industrielle"/>
+                    <String fx:value="Sciences des Données"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </VBox>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Ajouter" GridPane.columnSpan="2"/>
+</GridPane>

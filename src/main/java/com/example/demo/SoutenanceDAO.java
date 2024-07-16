@@ -28,6 +28,25 @@ public class SoutenanceDAO {
         }
     }
 
+    public void modifyNoteAppreciationSoutenance(String idSoutenance, String note, String validation) throws SQLException {
+        try {
+            String query = "UPDATE SOUTENANCE SET NOTE = ?, VALIDATION = ? WHERE IDSOUTENANCE = ?";
+            Class.forName("oracle.jdbc.OracleDriver");
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "raid");
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, note);
+            preparedStatement.setString(2, validation);
+            preparedStatement.setString(3, idSoutenance);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
     public List<SoutenanceForm> getAllSoutenance() throws SQLException{
         List<SoutenanceForm> soutenances = new ArrayList<>();
         try {
@@ -43,7 +62,9 @@ public class SoutenanceDAO {
                 String salleSoutenance = resultSet.getString("SALLESOUTENANCE");
                 String idJurySoutenance = resultSet.getString("IDJURYSOUTENANCE");
                 String nomsEtudiants = resultSet.getString("NOMSETUDIANTS");
-                soutenances.add(new SoutenanceForm(idSoutenance, dateSoutenance, heureSoutenance, salleSoutenance, idJurySoutenance, nomsEtudiants));
+                String note = resultSet.getString("NOTE");
+                String validation = resultSet.getString("VALIDATION");
+                soutenances.add(new SoutenanceForm(idSoutenance, dateSoutenance, heureSoutenance, salleSoutenance, idJurySoutenance, nomsEtudiants, note, validation));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -70,7 +91,9 @@ public class SoutenanceDAO {
                 String salleSoutenance = resultSet.getString("SALLESOUTENANCE");
                 String idJurySoutenance = resultSet.getString("IDJURYSOUTENANCE");
                 String nomsEtudiants = resultSet.getString("NOMSETUDIANTS");
-                soutenance = new SoutenanceForm(idSoutenance1, dateSoutenance, heureSoutenance, salleSoutenance, idJurySoutenance, nomsEtudiants);
+                String note = resultSet.getString("NOTE");
+                String validation = resultSet.getString("VALIDATION");
+                soutenance = new SoutenanceForm(idSoutenance1, dateSoutenance, heureSoutenance, salleSoutenance, idJurySoutenance, nomsEtudiants, note, validation);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
