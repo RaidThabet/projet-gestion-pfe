@@ -1,0 +1,44 @@
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane
+        style="-fx-background-color: linear-gradient(from 0% 100% to 100% 0%, #d7e3fc 0%, #edf2fb 5%, #d7e3fc 95%, #edf2fb 100%);"
+        xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo.HelloController">
+    <left>
+        <VBox minWidth="200" minHeight="220" style="-fx-padding: 0 0 50 0; -fx-font-size: 15; -fx-font-weight: bold;">
+            <Label text="Gestion des Etudiants" VBox.vgrow="NEVER" textFill="3a0ca3" style="-fx-padding: 50 10 0 10"/>
+            <Separator VBox.vgrow="NEVER" style="-fx-stroke: transparent;-fx-border-width: 0;-fx-background-color: #5465ff"/>
+            <VBox spacing="10" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
+                <Label styleClass="addLabel" text="Ajouter Etudiant" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170" alignment="TOP_LEFT" onMouseClicked="#showAjouterEtudiantPage"/>
+                <Label styleClass="modifyLabel" text="Modifier Etudiant" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170"  alignment="TOP_LEFT"/>
+                <Label styleClass="deleteLabel" text="Supprimer Etudiant" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170"  alignment="TOP_LEFT"/>
+            </VBox>
+            <Region VBox.vgrow="SOMETIMES"/>
+            <Label text="Gestion des Enseignants" VBox.vgrow="NEVER" textFill="3a0ca3" style="-fx-padding: 20 10 0 10"/>
+            <Separator VBox.vgrow="NEVER" style="-fx-stroke: transparent;-fx-border-width: 0;-fx-background-color: #5465ff"/>
+            <VBox spacing="10" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
+                <Label styleClass="addLabel" text="Ajouter Enseignant" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170" alignment="TOP_LEFT"/>
+                <Label styleClass="modifyLabel" text="Modifier Enseignant" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170"  alignment="TOP_LEFT"/>
+                <Label styleClass="deleteLabel" text="Supprimer Enseignant" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170"  alignment="TOP_LEFT"/>
+            </VBox>
+            <Region VBox.vgrow="SOMETIMES"/>
+            <Label text="Gestion des Soutenances" VBox.vgrow="NEVER" textFill="3a0ca3" style="-fx-padding: 20 10 0 10"/>
+            <Separator VBox.vgrow="NEVER" style="-fx-stroke: transparent;-fx-border-width: 0;-fx-background-color: #5465ff"/>
+            <VBox spacing="10" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
+                <Label styleClass="addLabel" text="Ajouter Soutenance" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170" alignment="TOP_LEFT"/>
+                <Label styleClass="modifyLabel" text="Modifier Soutenance" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170"  alignment="TOP_LEFT"/>
+                <Label styleClass="deleteLabel" text="Supprimer Soutenance" VBox.vgrow="NEVER" textFill="3a0ca3" maxWidth="170"  alignment="TOP_LEFT"/>
+            </VBox>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="pagesTackPane" BorderPane.alignment="CENTER">
+
+        </StackPane>
+    </center>
+</BorderPane>

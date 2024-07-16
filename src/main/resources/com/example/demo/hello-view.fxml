@@ -1,0 +1,178 @@
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane
+        style="-fx-background-color: #f2f2f2;"
+        xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo.HelloController">
+    <left>
+        <VBox minWidth="250" minHeight="220" style="-fx-padding: 15;-fx-font-size: 15; -fx-font-weight: bold; -fx-background-color: #f8f9fa" alignment="TOP_CENTER">
+            <ImageView>
+                <image>
+                    <Image url="@isimmLogo.png"/>
+                </image>
+            </ImageView>
+            <Label text="Gestion des Etudiants" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 10 10 0 7; -fx-font-size: 17"/>
+            <VBox spacing="2" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
+                <Label styleClass="addLabel" text="Ajouter" VBox.vgrow="NEVER" textFill="black"  prefWidth="230" alignment="TOP_LEFT" onMouseClicked="#loadAjouterEtudiant"/>
+                <Label styleClass="modifyLabel" text="Modifier" VBox.vgrow="NEVER" textFill="black"  prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadModifierEtudiant"/>
+                <Label styleClass="searchLabel" text="Rechercher" VBox.vgrow="NEVER" textFill="black"  prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadRechercheEtudiant"/>
+            </VBox>
+
+            <Label text="Gestion des Jurys" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 20 10 0 7;-fx-font-size: 17"/>
+            <VBox spacing="2" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
+                <Label styleClass="addLabel" text="Ajouter" VBox.vgrow="NEVER" textFill="black" prefWidth="230" alignment="TOP_LEFT" onMouseClicked="#loadAjouterJury"/>
+                <!--Label styleClass="modifyLabel" text="Modifier" VBox.vgrow="NEVER" textFill="343a40" maxWidth="Infinity"  alignment="TOP_LEFT"/>-->
+                <Label styleClass="searchLabel" text="Rechercher" VBox.vgrow="NEVER" textFill="black" prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadRechercheJury"/>
+            </VBox>
+
+            <Label text="Gestion des Soutenances" VBox.vgrow="NEVER" textFill="black" style="-fx-padding: 20 0 0 7;-fx-font-size: 17"/>
+            <VBox spacing="2" minWidth="200" alignment="CENTER" stylesheets="@styles.css">
+                <Label styleClass="planifyLabel" text="Planifier" VBox.vgrow="NEVER" textFill="black" prefWidth="230" alignment="TOP_LEFT" onMouseClicked="#loadAjouterSoutenance"/>
+                <!--Label styleClass="modifyLabel" text="Modifier" VBox.vgrow="NEVER" textFill="343a40" maxWidth="Infinity"  alignment="TOP_LEFT"/>-->
+                <Label styleClass="searchLabel" text="Rechercher" VBox.vgrow="NEVER" textFill="black" prefWidth="230"  alignment="TOP_LEFT" onMouseClicked="#loadRechercherSoutenance"/>
+            </VBox>
+
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="pagesStackPane" BorderPane.alignment="CENTER" style="-fx-background-color: transparent;">
+            <fx:include fx:id="ajouterEtudiantPage" source="ajouterEtudiant.fxml"/>
+            <fx:include fx:id="modifierEtudiantPage" source="modifierEtudiant.fxml"/>
+            <AnchorPane fx:id="rechercheEtudiantPage">
+
+                <TableView fx:id="studentTable" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           stylesheets="@tableColumnStyle.css">
+                    <columns>
+                        <TableColumn fx:id="cinColumn" text="CIN">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="cin" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="nameColumn" text="Nom et Prénom">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomPrenom" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="dateNaissanceColumn" text="Date de naissance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dateNaissance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="lieuNaissanceColumn" text="Lieu de naissance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="lieuNaissance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="adresseColumn" text="Adresse">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="adresse" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="emailColumn" text="Email">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="email" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="diplomeColumn" text="Diplome">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="diplome" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="specialiteColumn" text="Specialité">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="specialite" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+
+            </AnchorPane>
+            <fx:include fx:id="ajouterJuryPage" source="ajouterJury.fxml"/>
+            <!--fx:include fx:id="rechercheJuryPage" source="rechercheJury.fxml"/>-->
+            <AnchorPane fx:id="rechercheJuryPage"
+                        prefHeight="400.0" prefWidth="600.0">
+                <TableView fx:id="juryTable" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           stylesheets="@tableColumnStyle.css">
+                    <columns>
+                        <TableColumn fx:id="idJuryColumn" text="ID Jury">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="idJury" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="presidentColumn" text="Président">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomPresident" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="rapporteurColumn" text="Rapporteur">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomRapporteur" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="examinateurColumn" text="Examinateur">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomExaminateur" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="encadreursColumn" text="Encadreurs">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomsEncadreurs" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+            <fx:include fx:id="ajouterSoutenancePage" source="ajouterSoutenance.fxml"/>
+            <!--fx:include fx:id="rechercherSoutenancePage" source="rechercherSoutenance.fxml"/>-->
+            <AnchorPane fx:id="rechercherSoutenancePage">
+                <TableView fx:id="soutenanceTable" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           stylesheets="@tableColumnStyle.css">
+                    <columns>
+                        <TableColumn fx:id="idSoutenanceColumn" text="ID Soutenance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="idSoutenance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="dateSoutenanceColumn" text="Date Soutenance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dateSoutenance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="heureSoutenanceColumn" text="Heure Soutenance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="heureSoutenance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="salleSoutenanceColumn" text="Salle Soutenance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="salleSoutenance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="jurySoutenanceColumn" text="Jury Soutenance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="idJurySoutenance" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="etudiantSoutenanceColumn" text="Etudiant Soutenance">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomsEtudiants" />
+                            </cellValueFactory>
+                        </TableColumn>
+
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </StackPane>
+    </center>
+</BorderPane>

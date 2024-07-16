@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.example.demo.HelloController"
+          prefHeight="400.0" prefWidth="600.0"
+          alignment="CENTER" vgap="30" hgap="20"
+            style="-fx-padding: 15" stylesheets="@FormStyle.css">
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0"  GridPane.columnSpan="2" style="-fx-font-size: 25; -fx-font-weight: bold;" GridPane.halignment="LEFT">
+        <Label text="FORMULAIRE DE MODIFICATION"/>
+        <Label text="Les champs marqués d'une étoile (*) sont obligatoires." style="-fx-font-size: 12;"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Label text="Matricule*" />
+        <TextField fx:id="matEtudiant" promptText="Matricule de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="2" GridPane.columnIndex="0">
+        <Label text="Nouveaux Nom et Prénom" />
+        <TextField fx:id="nvNomEtudiant" promptText="Nouveaux nom et prénom de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="2" GridPane.columnIndex="1">
+        <Label text="Nouvelle date de naissance" />
+        <DatePicker fx:id="nvDateNaissanceEtudiant" promptText="Nouvelle date de naissance de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="3" GridPane.columnIndex="0">
+        <Label text="Nouveau CIN" />
+        <TextField fx:id="nvCinEtudiant" promptText="Nouveau CIN de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="3" GridPane.columnIndex="1">
+        <Label text="Nouveau lieu de naissance" />
+        <TextField fx:id="nvLieuNaissanceEtudiant" promptText="Nouveau lieu de naissance de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="4" GridPane.columnIndex="0">
+        <Label text="Nouvelle adresse" />
+        <TextField fx:id="nvAdresseEtudiant" promptText="Nouvelle adresse de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="4" GridPane.columnIndex="1">
+        <Label text="Nouveau email" />
+        <TextField fx:id="nvEmailEtudiant" promptText="Nouveau email de l'étudiant" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="5" GridPane.columnIndex="0">
+        <Label text="Nouveau diplome" />
+        <ComboBox fx:id="nvDiplomeEtudiant" promptText="Nouveau diplome de l'étudiant" prefWidth="300">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Licence"/>
+                    <String fx:value="Mastère"/>
+                    <String fx:value="Ingénieur"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </VBox>
+
+    <VBox GridPane.rowIndex="5" GridPane.columnIndex="1">
+        <Label text="Nouveau Specialité" />
+        <ComboBox fx:id="nvSpecialiteEtudiant" promptText="Nouveau specialité de l'étudiant" prefWidth="300">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Génie Logiciel"/>
+                    <String fx:value="Microélectronique"/>
+                    <String fx:value="Systèmes Embarqués"/>
+                    <String fx:value="Mésure Instrumentation et Métrologie"/>
+                    <String fx:value="Microélectronique et Instrumentation"/>
+                    <String fx:value="Ingénierie en Instrumentation Industrielle"/>
+                    <String fx:value="Sciences des Données"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </VBox>
+    <Button fx:id="modifierEtudiantButton" text="Modifier" GridPane.columnIndex="1" GridPane.rowIndex="6"
+            GridPane.halignment="RIGHT" prefWidth="130" onAction="#handleModifyButtonActionEtudiant"/>
+</GridPane>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.HelloController"
+            prefHeight="400.0" prefWidth="600.0">
+    <TableView fx:id="soutenanceTable" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                style="-fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 20 20; -fx-border-width: 0; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color: transparent;">
+        <columns>
+            <TableColumn fx:id="idSoutenanceColumn" text="ID Soutenance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="idSoutenance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="dateSoutenanceColumn" text="Date Soutenance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="dateSoutenance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="heureSoutenanceColumn" text="Heure Soutenance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="heureSoutenance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="salleSoutenanceColumn" text="Salle Soutenance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="salleSoutenance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="jurySoutenanceColumn" text="Jury Soutenance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="jurySoutenance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="etudiantSoutenanceColumn" text="Etudiant Soutenance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="etudiantSoutenance" />
+                </cellValueFactory>
+            </TableColumn>
+
+        </columns>
+    </TableView>
+
+</AnchorPane>

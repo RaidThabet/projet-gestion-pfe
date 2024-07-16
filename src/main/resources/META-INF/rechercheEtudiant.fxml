@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.HelloController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="studentTable" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                style="-fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 20 20; -fx-border-width: 0; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color: transparent;">
+        <columns>
+            <TableColumn fx:id="cinColumn" text="CIN">
+                <cellValueFactory>
+                    <PropertyValueFactory property="cin" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="nameColumn" text="Nom et Prénom">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nomPrenom" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="dateNaissanceColumn" text="Date de naissance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="dateNaissance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="lieuNaissanceColumn" text="Lieu de naissance">
+                <cellValueFactory>
+                    <PropertyValueFactory property="lieuNaissance" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="adresseColumn" text="Adresse">
+                <cellValueFactory>
+                    <PropertyValueFactory property="adresse" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="emailColumn" text="Email">
+                <cellValueFactory>
+                    <PropertyValueFactory property="email" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="diplomeColumn" text="Diplome">
+                <cellValueFactory>
+                    <PropertyValueFactory property="diplome" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="specialiteColumn" text="Specialité">
+                <cellValueFactory>
+                    <PropertyValueFactory property="specialite" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+</AnchorPane>

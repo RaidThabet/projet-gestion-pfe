@@ -1,0 +1,65 @@
+.label:hover {
+  -fx-background-color: #bde0fe; /* stylelint-disable */
+  -fx-text-fill: black;
+  -fx-opacity: 1.5; /* stylelint-disable */
+  /*-fx-border-radius: 9;
+    -fx-background-radius: 9;*/
+}
+
+.addLabel {
+  -fx-graphic: url("add-file.png");
+  -fx-opacity: 0.8;
+}
+
+.modifyLabel {
+  -fx-graphic: url("edit.png");
+  -fx-opacity: 0.8;
+}
+
+.deleteLabel {
+  -fx-graphic: url("deleteNotHovered.png");
+  -fx-opacity: 0.8;
+}
+
+.searchLabel {
+  -fx-graphic: url("search.png");
+  -fx-opacity: 0.8;
+}
+
+.planifyLabel {
+  -fx-graphic: url("task.png");
+  -fx-opacity: 0.8;
+}
+
+.addLabel:hover {
+  -fx-graphic: url("add-file.png");
+}
+
+.modifyLabel:hover {
+  -fx-graphic: url("edit.png");
+}
+
+.deleteLabel:hover {
+  -fx-graphic: url("deleteHovered.png");
+}
+
+.searchLabel:hover {
+  -fx-graphic: url("search.png");
+}
+
+.planifyLabel:hover {
+  -fx-graphic: url("task.png");
+}
+
+.label {
+  -fx-padding: 10 20 10 20;
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
+  -fx-font-family: "Arial";
+  -fx-font-size: 9pt;
+  -fx-font-weight: bold;
+}
+
+.table-row-cell {
+  -fx-background-color: transparent;
+}

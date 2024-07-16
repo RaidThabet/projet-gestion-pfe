@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.HelloController"
+            prefHeight="400.0" prefWidth="600.0"
+            vgap="30" hgap="20" alignment="CENTER"
+          style="-fx-padding: 15" stylesheets="@FormStyle.css">
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0"  GridPane.columnSpan="2" style="-fx-font-size: 25; -fx-font-weight: bold;" GridPane.halignment="LEFT">
+        <Label text="FORMULAIRE D'AJOUT"/>
+        <Label text="Les champs marqués d'une étoile (*) sont obligatoires." style="-fx-font-size: 12;"/>
+    </VBox>
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="0">
+        <Label text="Date*" />
+        <DatePicker fx:id="dateSoutenance" promptText="Date de soutenance" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1">
+        <Label text="Heure*" />
+        <TextField fx:id="heureSoutenance" promptText="Heure de soutenance" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="2" GridPane.columnIndex="0">
+        <Label text="Salle*" />
+        <TextField fx:id="salleSoutenance" promptText="Salle de soutenance" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="2" GridPane.columnIndex="1">
+        <Label text="ID Jury*" />
+        <TextField fx:id="idJurySoutenance" promptText="Matricule de jury" prefWidth="300"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Label text="Etudiants*" />
+        <TextField fx:id="nomsEtudiants" promptText="Nom(s) étudiant(s)" prefWidth="300"/>
+    </VBox>
+
+    <Button fx:id="ajouterSoutenanceButon" GridPane.rowIndex="4" GridPane.columnIndex="1" text="Planifier"
+            GridPane.halignment="RIGHT" prefWidth="130" onAction="#handleSubmitButtonActionSoutenance"/>
+
+</GridPane>

@@ -1,0 +1,11 @@
+.table-view .column-header {
+  -fx-background-color: #057df6;
+  -fx-text-fill: white;
+  -fx-font-size: 12px;
+}
+
+.table-view .column-header .label {
+  -fx-background-color: #057df6;
+  -fx-text-fill: white;
+  -fx-font-size: 12px;
+}
